@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
  * @author ishanka on 4/16/21 at 11:21 PM
  * @since 0.0.1
  */
-@Component
+//@Component
 public class SpringBean2 {
 //    public SpringBean2() {
 //        System.out.println("Spring Bean 2...!");
