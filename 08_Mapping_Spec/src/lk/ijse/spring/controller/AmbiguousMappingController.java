@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.*;
  * @since 0.0.1
  */
 @RestController
-@RequestMapping("/api/v1/customer")
-public class CustomerController {
+@RequestMapping("/api/v1/ambiguous")
+public class AmbiguousMappingController {
 
     @PostMapping
     public String addCustomer(){

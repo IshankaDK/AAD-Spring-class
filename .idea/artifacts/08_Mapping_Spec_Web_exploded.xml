@@ -9,6 +9,7 @@
         </element>
         <element id="directory" name="lib">
           <element id="library" level="project" name="Spring-Framworks" />
+          <element id="library" level="project" name="jackson-databind" />
         </element>
       </element>
     </root>
