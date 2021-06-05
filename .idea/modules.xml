@@ -10,7 +10,8 @@
       <module fileurl="file://$PROJECT_DIR$/06_Spring_MVC/06_Spring_MVC.iml" filepath="$PROJECT_DIR$/06_Spring_MVC/06_Spring_MVC.iml" />
       <module fileurl="file://$PROJECT_DIR$/07_Spring_MVC2/07_Spring_MVC2.iml" filepath="$PROJECT_DIR$/07_Spring_MVC2/07_Spring_MVC2.iml" />
       <module fileurl="file://$PROJECT_DIR$/08_Mapping_Spec/08_Mapping_Spec.iml" filepath="$PROJECT_DIR$/08_Mapping_Spec/08_Mapping_Spec.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Maven_01/Maven_01.iml" filepath="$PROJECT_DIR$/Maven_01/Maven_01.iml" />
+      <module fileurl="file://$PROJECT_DIR$/09_Maven01/09_Maven01.iml" filepath="$PROJECT_DIR$/09_Maven01/09_Maven01.iml" />
+      <module fileurl="file://$PROJECT_DIR$/10_Simple_FrontEnd/10_Simple_FrontEnd.iml" filepath="$PROJECT_DIR$/10_Simple_FrontEnd/10_Simple_FrontEnd.iml" />
     </modules>
   </component>
 </project>
