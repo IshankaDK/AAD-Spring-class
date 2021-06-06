@@ -15,6 +15,11 @@ import java.util.ArrayList;
 @CrossOrigin
 public class CustomerController {
 
+    @GetMapping
+    public String test(){
+        return "Hello Maven";
+    }
+
     // x-www-urlencoded
     @PostMapping
     public String saveCustomer1(CustomerDTO dto) {
