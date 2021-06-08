@@ -4,6 +4,8 @@ import lk.ijse.spring.dto.CustomerDTO;
 import lk.ijse.spring.entity.Customer;
 import lk.ijse.spring.repo.CustomerRepo;
 import lk.ijse.spring.service.CustomerService;
+import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,45 +24,69 @@ public class CustomerServiceImpl implements CustomerService {
     @Autowired
     private CustomerRepo repo;
 
+    @Autowired
+    private ModelMapper mapper;
+
     public boolean addCustomer(CustomerDTO dto) {
-        repo.save(new Customer(dto.getId(), dto.getName(), dto.getAddress(), dto.getSalary()));
+//        ModelMapper mapper = new ModelMapper();
+        Customer customer = mapper.map(dto, Customer.class);
+        repo.save(customer);
         return true;
     }
 
     @Override
     public boolean deleteCustomer(String id) {
         CustomerDTO dto = searchCustomer(id);
-        Customer customer = new Customer(dto.getId(), dto.getName(), dto.getAddress(), dto.getSalary());
+        Customer customer = mapper.map(dto, Customer.class);
         repo.delete(customer);
         return true;
     }
 
     @Override
     public boolean updateCustomer(CustomerDTO dto) {
-       if (repo.existsById(dto.getId())){
-           repo.save(new Customer(dto.getId(),dto.getName(),dto.getAddress(),dto.getSalary()));
-           return true;
-       }
-       return false;
+        Customer customer = mapper.map(dto, Customer.class);
+        if (repo.existsById(dto.getId())) {
+            repo.save(customer);
+            return true;
+        }
+        return false;
     }
 
     @Override
     public CustomerDTO searchCustomer(String id) {
         Optional<Customer> customer = repo.findById(id);
         if (customer.isPresent()) {
-            Customer c = customer.get();
-            return new CustomerDTO(c.getId(), c.getName(), c.getAddress(), c.getSalary());
+            return mapper.map(customer.get(), CustomerDTO.class);
         }
         return null;
     }
 
     @Override
     public ArrayList<CustomerDTO> getAllCustomer() {
-        ArrayList<CustomerDTO> allCustomers = new ArrayList<>();
         List<Customer> all = repo.findAll();
-        for (Customer c : all) {
-            allCustomers.add(new CustomerDTO(c.getId(), c.getName(), c.getAddress(), c.getSalary()));
-        }
-        return allCustomers;
+        return mapper.map(all, new TypeToken<ArrayList<CustomerDTO>>() {}.getType());
+
     }
+
+    @Override
+    public CustomerDTO searchCustomerByName(String name) {
+        Customer customer = repo.findCustomerByName(name);
+        return mapper.map(customer, CustomerDTO.class);
+    }
+
+    @Override
+    public CustomerDTO searchCustomerByNameAndAddress(String name, String address) {
+        Optional<Customer> customer = repo.findCustomerByNameAndAddress(name, address);
+        if (customer.isPresent()) {
+            return mapper.map(customer.get(), CustomerDTO.class);
+        }
+        return null;
+    }
+
+    @Override
+    public ArrayList<CustomerDTO> searchCustomerByNameAndAddressForList(String name, String address) {
+        List<Customer> customers = repo.readByNameAndAddress(name, address);
+        return mapper.map(customers, new TypeToken<ArrayList<CustomerDTO>>() {}.getType());
+    }
+
 }

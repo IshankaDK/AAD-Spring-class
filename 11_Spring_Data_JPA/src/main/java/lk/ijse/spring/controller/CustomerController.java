@@ -44,4 +44,19 @@ public class CustomerController {
     public boolean updateCustomer(@RequestBody CustomerDTO dto) {
         return service.updateCustomer(dto);
     }
+
+    @GetMapping(path = "name/{name}")
+    public CustomerDTO searchCustomerByName(@PathVariable String name) {
+        return service.searchCustomerByName(name);
+    }
+
+    @GetMapping(path = "nameAndAddress/{name}/{address}")
+    public CustomerDTO searchCustomerByNameAndAddress(@PathVariable String name,@PathVariable String address) {
+        return service.searchCustomerByNameAndAddress(name,address);
+    }
+
+    @GetMapping(path = "list/{name}/{address}")
+    public ArrayList<CustomerDTO> searchCustomerByNameAndAddressForAList(@PathVariable String name,@PathVariable String address) {
+        return service.searchCustomerByNameAndAddressForList(name,address);
+    }
 }
