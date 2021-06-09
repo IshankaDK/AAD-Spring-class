@@ -7,6 +7,7 @@ import lk.ijse.spring.service.CustomerService;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -29,24 +30,26 @@ public class CustomerServiceImpl implements CustomerService {
 
     public boolean addCustomer(CustomerDTO dto) {
 //        ModelMapper mapper = new ModelMapper();
-        Customer customer = mapper.map(dto, Customer.class);
-        repo.save(customer);
+
+        if (repo.existsById(dto.getId())) {
+           throw new RuntimeException("Customer Already Exist");
+        }
+        repo.save(mapper.map(dto, Customer.class));
         return true;
     }
 
     @Override
     public boolean deleteCustomer(String id) {
-        CustomerDTO dto = searchCustomer(id);
-        Customer customer = mapper.map(dto, Customer.class);
-        repo.delete(customer);
+//        CustomerDTO dto = searchCustomer(id);
+//        repo.delete( mapper.map(dto, Customer.class));
+        repo.deleteById(id);
         return true;
     }
 
     @Override
     public boolean updateCustomer(CustomerDTO dto) {
-        Customer customer = mapper.map(dto, Customer.class);
         if (repo.existsById(dto.getId())) {
-            repo.save(customer);
+            repo.save( mapper.map(dto, Customer.class));
             return true;
         }
         return false;
@@ -85,7 +88,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public ArrayList<CustomerDTO> searchCustomerByNameAndAddressForList(String name, String address) {
-        List<Customer> customers = repo.readByNameAndAddress(name, address);
+        List<Customer> customers = repo.readByNameAndAddress(name, address, PageRequest.of(0,2));
         return mapper.map(customers, new TypeToken<ArrayList<CustomerDTO>>() {}.getType());
     }
 

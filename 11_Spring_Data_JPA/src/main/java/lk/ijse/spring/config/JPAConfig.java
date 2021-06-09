@@ -54,7 +54,6 @@ public class JPAConfig {
         dataSource.setPassword("7278");
         return dataSource;
     }*/
-/*
     // using property file
     @Bean // data source configuration
     public DataSource dataSource() {
@@ -64,15 +63,15 @@ public class JPAConfig {
         dataSource.setUsername(env.getRequiredProperty("db.username"));
         dataSource.setPassword(env.getRequiredProperty("db.password"));
         return dataSource;
-    }*/
+    }
 
-    // JNDI DataSource
+   /* // JNDI DataSource
     @Bean
     public DataSource dataSource() throws NamingException {
         JndiTemplate jndiTemplate = new JndiTemplate();
         return (DataSource) jndiTemplate.lookup("java:comp/env/jdbc/pool");
 
-    }
+    }*/
 
     @Bean //  JPA vendor configuration
     public JpaVendorAdapter vendorAdapter() {
