@@ -4,6 +4,7 @@
     <file type="web" url="file://$PROJECT_DIR$/09_Maven01" />
     <file type="web" url="file://$PROJECT_DIR$/09_Maven_01" />
     <file type="web" url="file://$PROJECT_DIR$/11_Spring_Data_JPA" />
+    <file type="web" url="file://$PROJECT_DIR$/12_POS" />
   </component>
   <component name="MavenProjectsManager">
     <option name="originalFiles">
@@ -11,6 +12,7 @@
         <option value="$PROJECT_DIR$/Maven_01/pom.xml" />
         <option value="$PROJECT_DIR$/09_Maven01/pom.xml" />
         <option value="$PROJECT_DIR$/11_Spring_Data_JPA/pom.xml" />
+        <option value="$PROJECT_DIR$/12_POS/pom.xml" />
       </list>
     </option>
   </component>

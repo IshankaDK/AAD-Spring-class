@@ -13,6 +13,7 @@
       <module fileurl="file://$PROJECT_DIR$/09_Maven01/09_Maven01.iml" filepath="$PROJECT_DIR$/09_Maven01/09_Maven01.iml" />
       <module fileurl="file://$PROJECT_DIR$/10_Simple_FrontEnd/10_Simple_FrontEnd.iml" filepath="$PROJECT_DIR$/10_Simple_FrontEnd/10_Simple_FrontEnd.iml" />
       <module fileurl="file://$PROJECT_DIR$/11_Spring_Data_JPA/11_Spring_Data_JPA.iml" filepath="$PROJECT_DIR$/11_Spring_Data_JPA/11_Spring_Data_JPA.iml" />
+      <module fileurl="file://$PROJECT_DIR$/12_POS/12_POS.iml" filepath="$PROJECT_DIR$/12_POS/12_POS.iml" />
     </modules>
   </component>
 </project>

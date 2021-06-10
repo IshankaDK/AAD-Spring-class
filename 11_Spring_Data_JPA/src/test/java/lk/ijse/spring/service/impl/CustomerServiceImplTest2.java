@@ -11,6 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.transaction.annotation.Transactional;
+
+
+import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -18,6 +22,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author ishanka on 6/9/21 at 8:03 PM
  * @since 0.0.1
  */
+@Transactional // when in Test Class it do not write database, but check if data can store in DB
 @WebAppConfiguration
 @ContextConfiguration(classes = {WebAppConfig.class, WebRootConfig.class})
 @ExtendWith(SpringExtension.class)
@@ -38,5 +43,37 @@ class CustomerServiceImplTest2 {
 //        Assertions.assertDoesNotThrow(()->{
 //            service.addCustomer(new CustomerDTO("C005", "Kamal", "Galle", 20215));
 //        });
+    }
+
+    @Test
+    void testAddCustomer() {
+
+        // check addCustomer method with duplicate details
+        CustomerDTO c1 = new CustomerDTO("C001", "Yaka", "Galle", 20215);
+        assertThrows(RuntimeException.class, () -> {
+            service.addCustomer(c1);
+        });
+
+        //put valid data and check whether it is ok or not
+        CustomerDTO c5 = new CustomerDTO("C005", "Yaka", "Galle", 20215);
+        assertDoesNotThrow(() -> {
+            service.addCustomer(c5);
+        });
+    }
+
+    @Test
+    void getAllMethod() {
+
+        CustomerDTO c1 = new CustomerDTO("C001", "Yaka", "Galle", 20215);
+        CustomerDTO c2 = new CustomerDTO("C002", "Malan", "Galle", 20215);
+        CustomerDTO c3 = new CustomerDTO("C003", "Geetha", "Galle", 20215);
+        service.addCustomer(c1);
+        service.addCustomer(c2);
+        service.addCustomer(c3);
+
+        ArrayList<CustomerDTO> allCustomer = service.getAllCustomer();
+        for (CustomerDTO customerDTO : allCustomer) {
+            System.out.println(customerDTO.toString());
+        }
     }
 }
